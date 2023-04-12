@@ -2,8 +2,21 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        xmlns:pages="clr-namespace:AvaloniaUIChampionProject.Pages"
+        mc:Ignorable="d" d:DesignWidth="600" d:DesignHeight="450"
+        Width="600" Height="450" WindowStartupLocation="CenterScreen"
         x:Class="AvaloniaUIChampionProject.MainWindow"
-        Title="AvaloniaUIChampionProject">
-    Welcome to Avalonia!
+        Title="AvaloniaUIChampionProject" MinWidth="500" MinHeight="350">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50" MinHeight="50" MaxHeight="50"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0" Orientation="Horizontal">
+            <Button x:Name="BackButton" Content="Back" Click="BackButton_OnClick" IsEnabled="False"/>
+            <Button x:Name="PageTwoButton" Content="Click" Click="PageTwoButton_OnClick"/>
+        </StackPanel>
+        <pages:PageOne x:Name="PageOne" IsVisible="True" Grid.Row="1"/>
+        <pages:PageTwo x:Name="PageTwo" IsVisible="False" Grid.Row="1"/>
+    </Grid>
 </Window>
