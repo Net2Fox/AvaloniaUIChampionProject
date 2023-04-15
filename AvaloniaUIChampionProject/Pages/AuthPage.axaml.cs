@@ -4,9 +4,9 @@ using Avalonia.Markup.Xaml;
 
 namespace AvaloniaUIChampionProject.Pages;
 
-public partial class PageTwo : UserControl
+public partial class AuthPage : UserControl
 {
-    public PageTwo()
+    public AuthPage()
     {
         InitializeComponent();
     }
