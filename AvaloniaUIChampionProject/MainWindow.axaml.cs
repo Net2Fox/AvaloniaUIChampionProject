@@ -3,6 +3,7 @@ using System.Linq;
 using Avalonia.Controls;
 using Avalonia.Interactivity;
 using AvaloniaUIChampionProject.Classes;
+using AvaloniaUIChampionProject.Pages;
 
 namespace AvaloniaUIChampionProject;
 
@@ -14,11 +15,6 @@ public partial class MainWindow : Window
         InitializeComponent();
         NavigationService.SetStartPage(AuthPage);
         NavigationService.OnNavigate += OnOnNavigate;
-    }
-    
-    private void PageTwoButton_OnClick(object? sender, RoutedEventArgs e)
-    {
-        NavigationService.Navigate(ManagerPage);
     }
 
     private void BackButton_OnClick(object? sender, RoutedEventArgs e)

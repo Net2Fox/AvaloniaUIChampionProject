@@ -25,4 +25,11 @@
       <UpToDateCheckInput Remove="Pages\PageOne.axaml" />
       <UpToDateCheckInput Remove="Pages\PageTwo.axaml" />
     </ItemGroup>
+
+    <ItemGroup>
+      <None Remove="Images\logo.png" />
+      <AvaloniaResource Include="Images\logo.png" />
+      <None Remove="Images\logo.ico" />
+      <AvaloniaResource Include="Images\logo.ico" />
+    </ItemGroup>
 </Project>
