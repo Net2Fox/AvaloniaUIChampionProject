@@ -19,12 +19,12 @@ public partial class AuthPage : UserControl
 
     private void LoginButton_OnClick(object? sender, RoutedEventArgs e)
     {
-        User loggedUser = DatabaseConnection.RunQuery<User>($"SELECT * FROM User WHERE Login = \'{LoginTextBox.Text}\' AND Password = \'{PasswordTextBox.Text}\'");
-        if (loggedUser.ID != null)
+        User loggedUser = DatabaseConnection.RunQuery<User>($"SELECT * FROM User WHERE Login = '{LoginTextBox.Text}' AND Password = '{PasswordTextBox.Text}'");
+        if (loggedUser.ID != 0)
         {
-            var mainWindow = this.FindAncestorOfType<Window>();
-            (mainWindow as MainWindow).ManagerPage.User = loggedUser;
-            NavigationService.Navigate((mainWindow as MainWindow).ManagerPage);
+            MainWindow mainWindow = this.FindAncestorOfType<MainWindow>();
+            mainWindow.ManagerPage.User = loggedUser;
+            NavigationService.Navigate(mainWindow.ManagerPage);
         }
         else
         {

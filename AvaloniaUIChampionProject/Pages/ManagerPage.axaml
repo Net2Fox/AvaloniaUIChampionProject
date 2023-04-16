@@ -5,6 +5,14 @@
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="AvaloniaUIChampionProject.Pages.ManagerPage">
     <Grid>
-        <TextBlock x:Name="NameTextBlock" Text="Hello!"/>
+        <DataGrid x:Name="OrdersDataGrid" AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Executor Name" Binding="{Binding Executor.Name}"/>
+                <DataGridTextColumn Header="Executor Name" Binding="{Binding Manager.Name}"/>
+                <DataGridTextColumn Header="Executor Name" Binding="{Binding Client.Name}"/>
+                <DataGridTextColumn Header="Executor Name" Binding="{Binding Status.Name}"/>
+                <DataGridTextColumn Header="Executor Name" Binding="{Binding Category.Name}"/>
+            </DataGrid.Columns>
+        </DataGrid>
     </Grid>
 </UserControl>

@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Markup.Xaml;
@@ -11,15 +12,24 @@ public partial class ManagerPage : UserControl
     public User User
     {
         get { return _user; }
-        set
-        {
-            _user = value;
-            NameTextBlock.Text = value.Name;
-        }
+        set { _user = value; }
+    }
+
+    private List<Order> _orders;
+    public List<Order> Orders
+    {
+        get { return _orders; }
+        set { _orders = value; }
     }
     
     public ManagerPage()
     {
         InitializeComponent();
+    }
+
+    public void Loaded()
+    {
+        Orders = DatabaseConnection.RunQueryList<Order>("SELECT * FROM `Order`");
+        OrdersDataGrid.Items = Orders;
     }
 }

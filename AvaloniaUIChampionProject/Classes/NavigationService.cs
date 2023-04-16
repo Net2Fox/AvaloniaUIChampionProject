@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using Avalonia.Controls;
 
 namespace AvaloniaUIChampionProject.Classes;
@@ -31,6 +32,11 @@ public static class NavigationService
             _currentPage = page;
             _currentPage.IsVisible = true;
             _canGoBack = true;
+            MethodInfo loadedMethod = _currentPage.GetType().GetMethod("Loaded");
+            if (loadedMethod != null)
+            {
+                loadedMethod.Invoke(_currentPage, null);
+            }
             OnNavigate?.Invoke();
         }
     }
