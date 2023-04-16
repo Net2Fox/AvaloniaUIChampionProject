@@ -19,24 +19,16 @@ public partial class AuthPage : UserControl
 
     private void LoginButton_OnClick(object? sender, RoutedEventArgs e)
     {
-        MySqlConnection mySqlConnection = new MySqlConnection("server=sql7.freemysqlhosting.net;user=sql7612567;password=HeC3RxhgLI;database=sql7612567");
-        mySqlConnection.Open();
-        MySqlCommand cmd = new MySqlCommand($"SELECT * FROM User WHERE Login = \'{LoginTextBox.Text}\' AND Password = \'{PasswordTextBox.Text}\'", mySqlConnection);
-        MySqlDataReader dataReader = cmd.ExecuteReader();
-        DataTable dt = new DataTable();
-        dt.Load(dataReader);
-        if (dt.Rows.Count != 0)
+        User loggedUser = DatabaseConnection.RunQuery<User>($"SELECT * FROM User WHERE Login = \'{LoginTextBox.Text}\' AND Password = \'{PasswordTextBox.Text}\'");
+        if (loggedUser.ID != null)
         {
-            User loggedUser = new User();
-            loggedUser.ID = Convert.ToInt32(dt.Rows[0]["RoleID"]);
-            loggedUser.Surname = Convert.ToString(dt.Rows[0]["Surname"]);
-            loggedUser.Name = Convert.ToString(dt.Rows[0]["Name"]);
-            loggedUser.Patronymic = Convert.ToString(dt.Rows[0]["Patronymic"]);
-            loggedUser.RoleID = Convert.ToInt32(dt.Rows[0]["RoleID"]);
-            
             var mainWindow = this.FindAncestorOfType<Window>();
             (mainWindow as MainWindow).ManagerPage.User = loggedUser;
             NavigationService.Navigate((mainWindow as MainWindow).ManagerPage);
+        }
+        else
+        {
+            LoginTextBox.Text = "чё за говно ты написал";
         }
     }
 }
